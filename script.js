@@ -90,27 +90,45 @@ function slumpa() {
         return;
     }
     
-    let garn, stick;
+    const btn = document.getElementById('slumpaBtn');
+    btn.classList.add('spinning');
+    btn.disabled = true;
     
-    if (isFirstClick) {
-        // Första gången: ta första alternativet
-        garn = garnList[0];
-        stick = stickList[0];
-        isFirstClick = false;
-    } else {
-        // Efterföljande gånger: slumpa
-        garn = getRandomElement(garnList);
-        stick = getRandomElement(stickList);
-    }
-    
-    const time = getRandomTime();
-    
-    // Uppdatera resultatet
-    document.getElementById('garnResult').textContent = garn;
-    document.getElementById('stickResult').textContent = stick;
-    
-    // Starta timern
-    startTimer(time);
+    // Vänta 0.8 sekunder före resultat visas
+    setTimeout(() => {
+        let garn, stick;
+        
+        if (isFirstClick) {
+            // Första gången: ta första alternativet
+            garn = garnList[0];
+            stick = stickList[0];
+            isFirstClick = false;
+        } else {
+            // Efterföljande gånger: slumpa
+            garn = getRandomElement(garnList);
+            stick = getRandomElement(stickList);
+        }
+        
+        const time = getRandomTime();
+        
+        // Uppdatera resultatet
+        document.getElementById('garnResult').textContent = garn;
+        document.getElementById('stickResult').textContent = stick;
+        
+        // Ta bort snurr och aktivera knapp igen
+        btn.classList.remove('spinning');
+        btn.classList.add('stopping');
+        
+        // Ta bort stopping-klassen efter transiteringen
+        setTimeout(() => {
+            btn.classList.remove('stopping');
+        }, 400);
+        
+        btn.disabled = false;
+        
+        // Starta timern
+        startTimer(time);
+    }, 800);
 }
 
 // Event listener för knappen
