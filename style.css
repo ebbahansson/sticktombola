@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'Prater Sans';
+    src: url('Fonts/Prater Sans/Prater Sans Regular.otf') format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Prater Sans';
+    src: url('Fonts/Prater Sans/Prater Sans Bold.otf') format('opentype');
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Prater Sans', sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('Bilder/Background_desktop.png'), url('Bilder/Background_mobile.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* Responsive background */
+@media (max-width: 768px) {
+    body {
+        background-image: url('Bilder/Background_mobile.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('Bilder/Background_mobile.jpg');
+        background-size: cover;
+        background-position: center;
+        transform: rotate(180deg);
+        z-index: -1;
+    }
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+}
+
+h1 {
+    color: white;
+    font-size: 5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slumpa-btn {
+    width: 200px;
+    height: 200px;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Prater Sans', sans-serif;
+    background: linear-gradient(135deg, #b87366 0%, #a65f56 100%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(184, 115, 102, 0.4);
+    transition: all 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.slumpa-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(184, 115, 102, 0.6);
+}
+
+.slumpa-btn:active {
+    transform: scale(0.98);
+}
+
+.resultat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.3em;
+    padding: 20px;
+}
+
+.result-label {
+    font-weight: bold;
+    color: #b87366;
+    min-width: 120px;
+    text-align: right;
+}
+
+.result-value {
+    color: white;
+    font-weight: bold;
+    flex: 1;
+    text-align: left;
+    min-height: 1.5em;
+}
+
+.timer {
+    font-size: 1.5em;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 30px;
+    }
+    
+    .slumpa-btn {
+        width: 150px;
+        height: 150px;
+        font-size: 1.4em;
+        margin-bottom: 30px;
+    }
+    
+    .result-item {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 1.1em;
+    }
+    
+    .result-label {
+        text-align: center;
+    }
+}
