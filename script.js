@@ -2,6 +2,7 @@ let garnList = [];
 let stickList = [];
 let timerInterval = null;
 let timeRemaining = 0;
+let isFirstClick = true;
 
 // Ladda data från textfiler
 async function loadData() {
@@ -89,8 +90,19 @@ function slumpa() {
         return;
     }
     
-    const garn = getRandomElement(garnList);
-    const stick = getRandomElement(stickList);
+    let garn, stick;
+    
+    if (isFirstClick) {
+        // Första gången: ta första alternativet
+        garn = garnList[0];
+        stick = stickList[0];
+        isFirstClick = false;
+    } else {
+        // Efterföljande gånger: slumpa
+        garn = getRandomElement(garnList);
+        stick = getRandomElement(stickList);
+    }
+    
     const time = getRandomTime();
     
     // Uppdatera resultatet
